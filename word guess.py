@@ -17,53 +17,58 @@ time.sleep(5)
 print("--------------------------------")
 
 
+while True:
 
+    fruits = ["apple","banana","orange","blueberry","kiwi","lemon","cherry","peach","watermelon","strawberry"]
 
-fruits = ["apple","banana","orange","blueberry","kiwi","lemon","cherry","peach","waternelon","strawberry"]
+    secret_word = random.choice(fruits)
 
-secret_word = random.choice(fruits)
+    chars = list(secret_word)
+    chars.sort()
 
-chars = list(secret_word)
-chars.sort()
+    word_len = len(secret_word)
+    print("this word have",word_len,"letter")
 
-word_len = len(secret_word)
-print("this word have",word_len,"letter")
-
-guess_chance = 10
-print("--------------------------------")
-print("you have",guess_chance + word_len,"chance to guess the letter's")
+    guess_chance = 10
+    print("--------------------------------")
+    print("you have",guess_chance + word_len,"chance to guess the letter's")
    
-count = 0
-
-while count < guess_chance + word_len:
-    count += 1
-    
-    guess = input("Enter your guess:")
-           
-    if guess in chars: 
-        print("yes your guess is right")
-        print("------------------------")
-        chars.remove(guess)
-                     
-    elif guess not in chars:
-        print("no, you wrong!")
-        print("------------------------")
-        
-    if chars == []:
-        print("you win\n you did it at",count,"time")
-        print("Answer is",secret_word)
-        print("You had",(guess_chance + word_len) - count ,"more chances")
-        break
+    count = 0
 
 
-while count >= guess_chance + word_len:
-    count += 1
-    if count == guess_chance + word_len:
+
+    while count < guess_chance + word_len:
+        count += 1
+
+        guess = input("Enter your guess:")
+
+        if guess in chars:
+            print("yes your guess is right")
+            print("------------------------")
+            chars.remove(guess)
+
+        elif guess not in chars:
+            print("no, you wrong!")
+            print("------------------------")
+
+        if chars == []:
+            print("you win\n you did it at", count, "time")
+            print("Answer is", secret_word)
+            print("You had", (guess_chance + word_len) - count, "more chances")
+            print("-------------------------")
+            break
+
+    while count >= guess_chance + word_len:
+        count += 1
+        if count == guess_chance + word_len:
+            break
+
+        elif count > guess_chance + word_len:
+            print("------------------------------------")
+            print("GAME OVER\n answer was", secret_word)
+            break
+
+    try_again = int(input("if you want to play again press 1 but if you want to exit press 0\nEnter here:"))
+    print("----------------------------")
+    if try_again == 0:
         break
-    
-    elif count > guess_chance + word_len:
-        print("------------------------------------")
-        print("GAME OVER\n answer was", secret_word)
-        break
-    
-    
